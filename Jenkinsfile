@@ -14,7 +14,7 @@ pipeline {
              steps {
                 withAWS(region:'ap-south-1',credentials:'task for practice') {
                  sh '''
-                     aws s3 mb s3://miyami_s3
+                    aws s3 mb s3://miyami
                  '''
                 }
              }
@@ -23,7 +23,7 @@ pipeline {
               steps {
                   withAWS(region:'ap-south-1',credentials:'task for practice') {
                   sh 'echo "Uploading content with AWS creds"'
-                      s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'motion_effect', bucket:'miyami_s3')
+                      s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'motion_effect', bucket:'miyami')
                   }
               }
          }
