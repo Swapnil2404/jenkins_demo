@@ -10,22 +10,26 @@ pipeline {
                  '''
              }
          }  
-         stage('Create s3 bucket') {
+         stage('exicution') {
              steps {
-                withAWS(region:'ap-south-1',credentials:'task for practice') {
-                 sh '''
-                    aws s3 mb s3://miyami
-                 '''
-                }
+                 sh 
+                    cd /home/ubuntu/jenkins_demo/real-estate-management/frontend
+                    sh 
+                    npm install
+                    npm run Build
+
              }
-         }        
-         stage('Upload to AWS') {
-              steps {
-                  withAWS(region:'ap-south-1',credentials:'task for practice') {
-                  sh 'echo "Uploading content with AWS creds"'
-                      s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'motion_effect', bucket:'miyami')
-                  }
-              }
+         }  
+         
+         stage('upload data') {
+             steps {
+                 sh 
+                 aws s3 cp --recursive /home/ubuntu/jenkins_demo/real-estate-management/frontend/www s3://statichost24/ --region "ap-south-1"
+
+                 
+             }
+         }         
+         
          }
      }
 }
