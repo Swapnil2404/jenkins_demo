@@ -19,7 +19,12 @@ pipeline {
                     npm run Build
                  '''
              }
-         }  
+         } 
+          stage('Upload to AWS') {
+              steps {
+                  withAWS(region:'ap-south-1',credentials:'AKIAS5WLJKZP4YH5LE4A (task for practice)')
+              }
+          } 
          
          stage('upload data') {
              steps {
