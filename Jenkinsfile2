@@ -1,37 +1,29 @@
 pipeline {
      agent any
      stages {
-         stage('Build') {
+         stage('Install') {
              steps {
-                 sh 'echo "Hello World"'
                  sh '''
-                     echo "Multiline shell steps works too"
-                     ls -lah
-                 '''
+                 cd ./real-estate-management/frontend
+                 npm install
+                '''
              }
          }  
-         stage('exicution') {
+         stage('Build') {
              steps {
                  sh '''
                     cd ./real-estate-management/frontend
-                    sh 
-                    npm install
                     npm run build
                  '''
              }
          } 
           stage('Upload to AWS') {
               steps {
-                  withAWS(region:'ap-south-1',credentials:'AKIAS5WLJKZP4YH5LE4A (task for practice)')
+                  withAWS(region:'ap-south-1',credentials:'task for practice') {
+                    sh 'aws s3 cp --recursive ./real-estate-management/frontend/www s3://statichost24/ --region "ap-south-1"'
+                  }
               }
           } 
-         
-         stage('upload data') {
-             steps {
-                 sh 'aws s3 cp --recursive ./real-estate-management/frontend/www s3://statichost24/ --region "ap-south-1"'
-                 
-             }
-         }         
          
          }
      }
