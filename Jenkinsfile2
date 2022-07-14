@@ -16,7 +16,7 @@ pipeline {
                     cd ./real-estate-management/frontend
                     sh 
                     npm install
-                    npm run Build
+                    npm run build
                  '''
              }
          } 
