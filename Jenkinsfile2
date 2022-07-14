@@ -13,7 +13,7 @@ pipeline {
          stage('exicution') {
              steps {
                  sh '''
-                    cd /home/ubuntu/jenkins_demo/real-estate-management/frontend
+                    cd ./real-estate-management/frontend
                     sh 
                     npm install
                     npm run Build
@@ -23,9 +23,9 @@ pipeline {
          
          stage('upload data') {
              steps {
-                 sh 
-                 aws s3 cp --recursive /home/ubuntu/jenkins_demo/real-estate-management/frontend/www s3://statichost24/ --region "ap-south-1"
-
+                 sh '
+                 aws s3 cp --recursive ./real-estate-management/frontend/www s3://statichost24/ --region "ap-south-1"
+                 '
                  
              }
          }         
