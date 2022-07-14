@@ -12,12 +12,12 @@ pipeline {
          }  
          stage('exicution') {
              steps {
-                 sh 
+                 sh '''
                     cd /home/ubuntu/jenkins_demo/real-estate-management/frontend
                     sh 
                     npm install
                     npm run Build
-
+                 '''
              }
          }  
          
