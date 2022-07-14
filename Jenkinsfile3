@@ -1,0 +1,33 @@
+pipeline {
+     agent any
+     stages {
+         stage('Install') {
+             steps {
+                 sh '''
+                 cd ./real-estate-management/frontend
+                 npm install
+                '''
+             }
+         }  
+         stage('Build') {
+             steps {
+                 sh '''
+                    cd ./real-estate-management/frontend
+                    npm run build
+                 '''
+             }
+         } 
+          stage('Upload to AWS') {
+              steps {
+                  sh '''
+                  cd www
+                  cp -r ./ var/www/html
+
+                  '''
+                  }
+              }
+          } 
+         
+         }
+     
+
