@@ -17,10 +17,10 @@ pipeline {
                  '''
              }
          } 
-          stage('Upload to AWS') {
+          stage('Upload to Nginx') {
               steps {
                   sh '''
-                  cd www
+                  cd ./real-estate-management/frontend/www
                   cp -r ./ var/www/html
 
                   '''
