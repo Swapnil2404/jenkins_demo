@@ -21,7 +21,7 @@ pipeline {
               steps {
                   sh '''
                   cd ./real-estate-management/frontend/www
-                  cp -r ./ var/www/html
+                  cp -r ./ /var/www/html
 
                   '''
                   }
